@@ -1,85 +1,74 @@
 from xml.dom.pulldom import parseString
 from flask import Flask, render_template, url_for, request, redirect
-from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
-db = SQLAlchemy(app)
 
-class ToDo(db.Model):
-    id = db.Column(db.Integer, primary_key = True)
-    content = db.Column(db.String(200), nullable = False)
-    completed = db.Column(db.Integer, default = 0)
-    def __repr__(self):
-        return '<Task %r>' % self.id
+Brute_Cities = ''
+Dynamic_Cities=''
 
 @app.route('/', methods = ['POST', 'GET'])
 def index2():
-    if request.method == 'POST':
-        task_content = request.form['playto']
-        new_task = ToDo(content = task_content)
-        try:
-            db.session.add(new_task)
-            db.session.commit()
-            return  redirect('index.html', new_task = new_task)
-        except:
-            return 'There was an issue adding your task'
-
-    else:
-        # tasks = ToDo.query.all()
-        return render_template('index.html')
+    return render_template('index.html')
 @app.route('/brute', methods = ['POST', 'GET'])
 def index1():
+    global Brute_Cities
     if request.method == 'POST':
         task_content = request.form['playto']
-        # new_task = ToDo(content = task_content)
-        # try:
-        #     db.session.add(new_task)
-        #     db.session.commit()
-        #     return  redirect('Brute.html',new_task = new_task)
-        # except:
-        #     return render_template('index.html')
-        return  render_template('Brute.html',task_content = task_content)
+        Brute_Cities = task_content
+        return  render_template('GetPoints(Brute).html',task_content = task_content)
     else:
         return render_template('index.html')
 
 @app.route('/dynamic', methods = ['POST', 'GET'])
 def index():
+    global Dynamic_Cities
     if request.method == 'POST':
         task_content = request.form['playto']
-        print(task_content)
-        # new_task = ToDo(content = task_content)
-        # try:
-        #     db.session.add(new_task)
-        #     db.session.commit()
-        #     return  redirect('Brute.html',new_task = new_task)
-        # except:
-        #     return render_template('index.html')
-        return  render_template('Dynamic.html',task_content = task_content)
+        Dynamic_Cities = task_content
+        return  render_template('GetPoints(Dynamic).html',task_content = task_content)
     else:
         return render_template('index.html')
-'''@app.route('/delete/<int:id>')
-def delete(id):
-    task_to_delete = ToDo.query.get_or_404(id)
-    try:
-        db.session.delete(task_to_delete)
-        db.session.commit()
-        return redirect('/')
-    except:
-        return 'There was a problem deleting that task'
 
-@app.route('/update/<int:id>', methods = ['GET', 'POST'])
-def update(id):
-    task = ToDo.query.get_or_404(id)
+@app.route('/playBrute', methods = ['POST', 'GET'])
+def getPoints():
     if request.method == 'POST':
-        task.content = request.form['content']
-        try:
-            db.session.commit()
-            return redirect('/')
-        except:
-            return "There was an issue updating your task"
+        task_content = '0 ' + Brute_Cities + ' '
+        for i in range((int(Brute_Cities))*2):
+            if(i < (int(Brute_Cities))*2 - 1):
+                task_content += request.form[str(i)] + ' '
+            else:
+                task_content += request.form[str(i)]
+        return render_template('Brute.html', task_content = task_content)
     else:
-        return render_template('update.html', task = task)
-'''
+        return render_template('index.html')
+
+@app.route('/playRandomBrute', methods = ['POST', 'GET'])
+def getPoints1():
+    if request.method == 'POST':
+        task_content = '1 ' + Brute_Cities
+        return render_template('Brute.html', task_content = task_content)
+    else:
+        return render_template('index.html')
+
+@app.route('/playDynamic', methods = ['POST', 'GET'])
+def getPoints2():
+    if request.method == 'POST':
+        task_content = '0 ' + Dynamic_Cities + ' '
+        for i in range((int(Brute_Cities))*2):
+            if(i < (int(Brute_Cities))*2 - 1):
+                task_content += request.form[str(i)] + ' '
+            else:
+                task_content += request.form[str(i)]
+        return render_template('Dynamic.html', task_content = task_content)
+    else:
+        return render_template('index.html')
+
+@app.route('/playRandomDynamic', methods = ['POST', 'GET'])
+def getPoints12():
+    if request.method == 'POST':
+        task_content = '1 ' + Dynamic_Cities
+        return render_template('Dynamic.html', task_content = task_content)
+    else:
+        return render_template('index.html')
+
 if __name__ == '__main__':
     app.run(debug = True)
