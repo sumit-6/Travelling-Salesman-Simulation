@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travelling Salesman Problem</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <style>
+        body{
+            width: 100%;
+            height: 100%;
+            color: #fff;
+            background:  linear-gradient(-45deg, #ecb211, #EE7752, #E73C7E, #23A6D5, #23D5AB, #ecb211);
+            background-size: 400% 400%;
+            position: relative;
+            animation: change 10s ease-in-out infinite;
+        }
+
+
+        @keyframes change{
+            0%{
+                background-position: 0% 50%;
+            }
+            50%{
+                background-position: 100% 50%;
+            }
+            100%{
+                background-position: 0% 50%;
+            }
+        }
+        
+        .navbar,#content,#box{
+          background-color: hsl(171, 100%, 41%);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="/">
+            <img src="{{ url_for('static', filename='account_tree_black_24dp.svg') }}" width="50" height="128">
+          </a>
+      
+          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+      
+        <div id="navbarBasicExample" class="navbar-menu">
+          <div class="navbar-start">
+            <a class="navbar-item" href="/">
+              Home
+            </a>
+      
+            <a class="navbar-item" href="https://www.interviewbit.com/blog/travelling-salesman-problem/" target="_blank">
+              Documentation
+            </a>
+      
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link">
+                More
+              </a>
+      
+              <div class="navbar-dropdown">
+                <a class="navbar-item">
+                  About
+                </a>
+                <a class="navbar-item">
+                  Contact
+                </a>
+                <hr class="navbar-divider">
+                <a class="navbar-item">
+                  Report an issue
+                </a>
+              </div>
+            </div>
+          </div>
+      
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="buttons">
+                <a class="button is-primary" href="https://github.com/sumit-6/Travelling-Salesman-Simulation" target="_blank">
+                  <strong>Help me</strong>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <section id="content" class="content is-medium">
+        <h1 id="box" class="box title">x-coordinates of each city must be in (60, 600]
+            <br>
+        y-coordinates of each city must be in (20, 300]</h1>
+      </section>
+
+      <div id="data" style="display:none">{{task_content}}</div>
+
+      <section class="section">
+        <div class="card">
+          <header class="card-header">
+            <p class="card-header-title">
+              Inputs
+            </p>
+          </header>
+          <div class="card-content">
+            <div class="content">
+              <form action="/playGenetic" method="post" target="_blank">
+                  <span class="tag is-primary is-medium">Location of Cities</span>
+                  <div id="resources" class="box"></div>
+                  <button type="submit" class="button is-primary">Play</button>
+              </form>
+              <br>
+              <form action="/playRandomGenetic" method="post" target="_blank">
+                  <button type="submit" class="button is-primary">Start Randomly</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <script src="{{ url_for('static', filename='JavaScript/getPoints.js') }}"></script>
+
+</body>
+</html>

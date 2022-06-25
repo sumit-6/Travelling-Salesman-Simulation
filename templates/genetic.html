@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Dynamic Approach</title>
+    <title>Brute Force Approach</title>
 
     <script src="{{ url_for('static', filename='Javascript/p5.gui.js') }}"></script>
     <script src="{{ url_for('static', filename='Javascript/p5.min.js') }}"></script>
@@ -18,9 +18,9 @@
   </head>
 
   <body>
-    <form action="#">
       <span id = "playto" style="display:none">{{task_content}}</span>
-    </form>
-    <script id="Approach" src="{{ url_for('static', filename='Javascript/DynamicApproach.js') }}"></script>
+    <script id="Approach" src="{{ url_for('static', filename='Javascript/geneticAlgorithm.js') }}"></script>
+    <script id="GA" src="{{ url_for('static', filename='Javascript/GA.js') }}"></script>
+
   </body>
 </html>
