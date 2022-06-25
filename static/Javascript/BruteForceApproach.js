@@ -44,6 +44,7 @@ function draw()
     background(0);
     stroke(255, 0, 255);
     strokeWeight(2.5);
+    
     let Noderadius = 8;
     noFill();
     for(let i = 0; i < cities.length; i++)

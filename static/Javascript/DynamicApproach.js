@@ -4,7 +4,6 @@ let cities = [];
 let List = (document.querySelector('#playto').textContent).split(' ');
 let totalCities = parseInt(List[1]);
 let decision = parseInt(List[0]);
-//let totalCities = 15;
 let recordDistance;
 let bestEver = [];
 let order = [];
@@ -88,9 +87,8 @@ function mousePressed() {
 }*/
   
 function createMemo(S, N){
-    for(let i = 0; i < N; i++){
-        if(i != S)
-        {
+    for(let i = 0; i < N; i++) {
+        if(i != S) {
             memo[i][(1 << S) | (1 << i)] = graph[S][i];
         }
     }
