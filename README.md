@@ -31,9 +31,9 @@ You can follow the steps provided below to start using this project:
    ```sh
    git clone https://github.com/sumit-6/Travelling-Salesman-Simulation.git
    ```
-2. Install requirements.txt by running this command:
+2. Install virtualenv first:
    ```
-   pip install -r requirements.txt
+   pip install virtualenv
    ```
 3. Create an environment using this command:
    ```
@@ -44,7 +44,11 @@ You can follow the steps provided below to start using this project:
    ```
    env\Scripts\activate.bat
    ```
-5. Run the project:
+5. Install requirements.txt by running this command:
+   ```
+   pip install -r requirements.txt
+   ```
+6. Run the project:
    ```
    python app.py
    ```
