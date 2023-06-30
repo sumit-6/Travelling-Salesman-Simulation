@@ -66,3 +66,7 @@ You can follow the steps provided below to start using this project:
 ![Dynamic](https://github.com/sumit-6/Travelling-Salesman-Simulation/blob/main/img/6.JPG)
 5. Genetic Algorithm
 ![Genetic](https://github.com/sumit-6/Travelling-Salesman-Simulation/blob/main/img/7.JPG)
+
+# Demo
+https://github.com/sumit-6/Travelling-Salesman-Simulation/assets/75926522/9e004a57-5292-4d76-b241-945fb134d060
+
